@@ -12,13 +12,13 @@ int _printf(const char *format, ...)
 	printer_t funcs[] = {{"c", print_c}, {"S", print_s}
 	};
 	va_start(args, format);
-	if (format == '\0')
+	if (*format == '\0')
 		return (-1);
 	while (format && format[i])
 	{
 		if (format[i] == '%')
 		{
-			if (format[i + 1 == '%')
+			if (format[i + 1] == '%')
 			{
 				_myputchar('%');
 				counter++;
