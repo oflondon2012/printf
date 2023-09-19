@@ -1,7 +1,6 @@
 #include "main.h"
 /**
  * _printf - function to print to std out
- *
  * @format: variable for format specifier
  * Return: number of byte printed
  */
@@ -28,7 +27,6 @@ int _printf(const char *format, ...)
 			else
 			{
 				i++;
-				j = 0;
 				while (funcs[j].format_spec)
 				{
 					if (format[i] == *(funcs[j].format_spec))
@@ -42,7 +40,8 @@ int _printf(const char *format, ...)
 			}
 		}
 		else
-			_myputchar(format[i]);
+		{	_myputchar(format[i]);
+			counter++; }
 		i++;
 	}
 	va_end(args);
