@@ -10,7 +10,7 @@
 void print_s(va_list args)
 {
 	char *s;
-	
+
 	if (s == NULL)
 	{
 		putstr("Failed");
