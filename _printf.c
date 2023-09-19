@@ -11,7 +11,7 @@ int _printf(const char *format, ...)
 
 	printer_t funcs[] = {{"c", print_c}, {"s", print_s}};
 	va_start(args, format);
-	if (*format == '\0')
+	if (format == NULL)
 		return (-1);
 	while (format && format[i])
 	{
