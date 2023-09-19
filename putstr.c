@@ -9,7 +9,7 @@
 
 int putstr(char *ch)
 {
-	int j;
+	int j = 0;
 
 	if (ch)
 	{

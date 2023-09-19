@@ -3,6 +3,7 @@
 
 #include <unistd.h>
 #include <stdarg.h>
+#include <stdlib.h>
 
 int _myputchar(char c);
 int putstr(char *ch);
@@ -22,9 +23,5 @@ typedef struct printer
 void print_c(va_list arg);
 void print_s(va_list args);
 int _printf(const char *format, ...);
-
-
-
-
 
 #endif /* MAIN_H */
