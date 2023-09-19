@@ -1,6 +1,7 @@
 #include "main.h"
 /**
  * _printf - function to print to std out
+ *
  * @format: variable for format specifier
  * Return: number of byte printed
  */
@@ -12,9 +13,9 @@ int _printf(const char *format, ...)
 	printer_t funcs[] = {{"c", print_c}, {"s", print_s}};
 
 	va_start(args, format);
-	if (format == NULL)
+	if (format == NULL && *format == '\0')
 		return (-1);
-	while (format[i])
+	while (format && format[i])
 	{
 		if (format[i] == '%')
 		{
@@ -27,6 +28,7 @@ int _printf(const char *format, ...)
 			else
 			{
 				i++;
+				j = 0;
 				while (funcs[j].format_spec)
 				{
 					if (format[i] == *(funcs[j].format_spec))
@@ -40,8 +42,7 @@ int _printf(const char *format, ...)
 			}
 		}
 		else
-		{	_myputchar(format[i]);
-			counter++; }
+			_myputchar(format[i]);
 		i++;
 	}
 	va_end(args);
