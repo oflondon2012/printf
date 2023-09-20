@@ -8,12 +8,11 @@
  */
 int _printf(const char *format, ...)
 {
-	if (format == NULL)
-		return (-1);
-
 	unsigned int j, counter = 0, strcount;
 	va_list listarg;
-	char *str;
+
+	if (format == NULL)
+		return (-1);
 
 	va_start(listarg, format);
 
