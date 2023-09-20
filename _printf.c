@@ -1,23 +1,19 @@
 #include "main.h"
-
+#include <stdio.h>
 /**
  * _printf - function to print to std out
- *
  * @format: variable for format specifier
  * Return: number of byte printed
  */
 int _printf(const char *format, ...)
 {
-	unsigned int j, counter = 0, strcount;
-	va_list listarg;
+	unsigned int j = 0, counter = 0, strcount;
 	char *str;
 
-	if (format == NULL)
-		return (-1);
+	va_list listarg;
 
 	va_start(listarg, format);
 
-	j = 0;
 	while (format[j] != '\0')
 	{
 		if (format[j] != '%')
@@ -30,18 +26,15 @@ int _printf(const char *format, ...)
 			j++;
 		}
 		else if (format[j + 1] == 's')
-		{
-			str = va_arg(listarg, char *);
+		{	str = va_arg(listarg, char*);
 			if (str == NULL)
 				return (-1);
-
 			strcount = putstr(str);
 			j++;
 			counter = counter + (strcount - 1);
 		}
 		else if (format[j + 1] == '%')
-		{
-			_myputchar('%');
+		{	_myputchar('%');
 			j++;
 		}
 		else if (format[j + 1] == 'd' || format[j + 1] == 'i')
@@ -49,8 +42,6 @@ int _printf(const char *format, ...)
 			strcount = _recusive(va_arg(listarg, int), counter);
 			j++;
 		}
-		else
-			return (-1);
 		j++;
 		counter++;
 	}
