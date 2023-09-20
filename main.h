@@ -3,7 +3,6 @@
 
 #include <unistd.h>
 #include <stdarg.h>
-#include <stdlib.h>
 
 int _myputchar(char c);
 int putstr(char *ch);
