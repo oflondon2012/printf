@@ -6,6 +6,7 @@
 
 int _myputchar(char c);
 int putstr(char *ch);
+int _recusive(int num1, int numb2);
 
 int _printf(const char *format, ...);
 
