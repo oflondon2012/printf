@@ -35,7 +35,7 @@ int _printf(const char *format, ...)
 			if (str == NULL)
 				return (-1);
 
-			strcount = putstr(va_arg(listarg, char *));
+			strcount = putstr(str);
 			j++;
 			counter = counter + (strcount - 1);
 		}
@@ -49,6 +49,8 @@ int _printf(const char *format, ...)
 			strcount = _recusive(va_arg(listarg, int), counter);
 			j++;
 		}
+		else
+			return (-1);
 		j++;
 		counter++;
 	}
