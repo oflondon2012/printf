@@ -10,6 +10,7 @@ int _printf(const char *format, ...)
 {
 	unsigned int j, counter = 0, strcount;
 	va_list listarg;
+	char *str;
 
 	if (format == NULL)
 		return (-1);
@@ -30,6 +31,10 @@ int _printf(const char *format, ...)
 		}
 		else if (format[j + 1] == 's')
 		{
+			str = va_arg(listarg, char *);
+			if (str == NULL)
+				return (-1);
+
 			strcount = putstr(va_arg(listarg, char *));
 			j++;
 			counter = counter + (strcount - 1);
