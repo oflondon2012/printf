@@ -18,4 +18,5 @@ void print_s(va_list args)
 		return;
 	}
 	putstr(s);
+
 }

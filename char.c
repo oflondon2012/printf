@@ -5,7 +5,7 @@
  *
  * @arg: argument to check for
  *
- * Return: void
+ * Return: 
  */
 void print_c(va_list arg)
 {

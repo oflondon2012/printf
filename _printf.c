@@ -1,49 +1,43 @@
 #include "main.h"
+
 /**
  * _printf - function to print to std out
  * @format: variable for format specifier
+ *
  * Return: number of byte printed
  */
 int _printf(const char *format, ...)
 {
-	va_list args;
-	int i = 0, j = 0, counter = 0;
+	unsigned int j, counter = 0, strcount;
+	va_list listarg;
 
-	printer_t funcs[] = {{"c", print_c}, {"s", print_s}};
-
-	va_start(args, format);
-	if (format == NULL)
-		return (-1);
-	while (format && format[i])
+	va_start(listarg, format);
+	j = 0;
+	while (format[j] != '\0')
 	{
-		if (format[i] == '%')
+		if (format[j] != '%')
 		{
-			if (format[i + 1] == '%')
-			{
-				_myputchar('%');
-				counter++;
-				i++;
-			}
-			else
-			{
-				i++;
-				while (funcs[j].format_spec)
-				{
-					if (format[i] == *(funcs[j].format_spec))
-					{
-						funcs[j].print(args);
-						counter++;
-						break;
-					}
-					j++;
-				}
-			}
+			_myputchar(format[j]);
 		}
-		else
-		{	_myputchar(format[i]);
-			counter++; }
-		i++;
+		else if (format[j + 1] == 'c')
+		{
+			_myputchar(va_arg(listarg, int));
+			j++;
+		}
+		else if (format[j + 1] == '%')
+		{
+			_myputchar('%');
+			j++;
+		}
+		else if (format[j + 1] == 's')
+		{
+			strcount = putstr(va_arg(listarg, char *));
+			j++;
+			counter = counter + (strcount - 1);
+		}
+		j++;
+		counter++;
 	}
-	va_end(args);
+	va_end(listarg);
 	return (counter);
 }
