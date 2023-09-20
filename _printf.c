@@ -44,6 +44,11 @@ int _printf(const char *format, ...)
 			_myputchar('%');
 			j++;
 		}
+		else if (format[j + 1] == 'd' || format[j + 1] == 'i')
+		{
+			strcount = _recusive(va_arg(listarg, int), counter);
+			j++;
+		}
 		else
 			return (-1);
 		j++;
