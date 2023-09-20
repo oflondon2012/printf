@@ -23,13 +23,11 @@ int _printf(const char *format, ...)
 		if (format[j] != '%')
 		{
 			_myputchar(format[j]);
-			counter++;
 		}
 		else if (format[j + 1] == 'c')
 		{
 			_myputchar(va_arg(listarg, int));
 			j++;
-			counter++;
 		}
 		else if (format[j + 1] == 's')
 		{
@@ -39,13 +37,12 @@ int _printf(const char *format, ...)
 
 			strcount = putstr(str);
 			j++;
-			counter = counter + strcount;
+			counter = counter + (strcount - 1);
 		}
 		else if (format[j + 1] == '%')
 		{
 			_myputchar('%');
 			j++;
-			counter++;
 		}
 		else
 			return (-1);
