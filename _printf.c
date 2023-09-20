@@ -11,9 +11,6 @@ int _printf(const char *format, ...)
 	unsigned int j, counter = 0, strcount;
 	va_list listarg;
 
-	if (format == NULL)
-		return;
-
 	va_start(listarg, format);
 
 	j = 0;
