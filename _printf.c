@@ -7,8 +7,8 @@
  */
 int _printf(const char *format, ...)
 {
-	int j = 0, counter = 0;
-	int handled;
+	unsigned int j = 0, counter = 0, strcount;
+	char *str;
 
 	va_list listarg;
 
@@ -23,16 +23,27 @@ int _printf(const char *format, ...)
 		{
 			_myputchar(format[j]);
 		}
-		else if (format[j + 1] != '\0')
+		else if (format[j + 1] == 'c')
 		{
+			_myputchar(va_arg(listarg, int));
 			j++;
-
-			handled = handle_spec(format[j], listarg, &counter);
-
-			if (!handled)
-			{
+		}
+		else if (format[j + 1] == 's')
+		{	str = va_arg(listarg, char*);
+			if (str == NULL)
 				return (-1);
-			}
+			strcount = putstr(str);
+			j++;
+			counter = counter + (strcount - 1);
+		}
+		else if (format[j + 1] == '%')
+		{	_myputchar('%');
+			j++;
+		}
+		else if (format[j + 1] == 'd' || format[j + 1] == 'i')
+		{
+			strcount = _recusive(va_arg(listarg, int), counter);
+			j++;
 		}
 		j++;
 		counter++;
