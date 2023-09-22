@@ -1,50 +1,49 @@
 #include "main.h"
-#include <stdio.h>
 /**
- * _printf - function to print to std out
- * @format: variable for format specifier
- * Return: number of byte printed
+ * _printf - a custom defined function that is smiliar to C printf
+ * @format : chracter string that is passed as arg
+ * Return: Numbers of char printed excluding null
  */
 int _printf(const char *format, ...)
 {
-	unsigned int j = 0, counter = 0, strcount;
-	char *str;
+	va_list args;
+	int i = 0, counter = 0, numflags;
+	int (*ptr_func)(va_list);
 
-	va_list listarg;
+	if (!format || (format[i] == '%' && format[i + 1] == '\0'))
+		return (-1);
+	if (!format[i])
+		return (0);
 
-	va_start(listarg, format);
-
-	while (format[j] != '\0')
+	va_start(args, format);
+	for (i = 0; format[i] != '\0'; i++)
 	{
-		if (format[j] != '%')
+		if (format[i] == '%')
 		{
-			_myputchar(format[j]);
-		}
-		else if (format[j + 1] == 'c')
-		{
-			_myputchar(va_arg(listarg, int));
-			j++;
-		}
-		else if (format[j + 1] == 's')
-		{	str = va_arg(listarg, char*);
-			if (str == NULL)
+			if (format[i + 1] == '\0')
 				return (-1);
-			strcount = putstr(str);
-			j++;
-			counter = counter + (strcount - 1);
+
+			numflags = nflags(format, i + 1);
+			i += numflags;
+			ptr_func = getfuncs(format, i + 1);
+
+			if (ptr_func == NULL)
+			{
+				_myputchar('%');
+				counter++;
+			}
+			else
+			{
+				counter += ptr_func(args);
+				i++;
+			}
 		}
-		else if (format[j + 1] == '%')
-		{	_myputchar('%');
-			j++;
-		}
-		else if (format[j + 1] == 'd' || format[j + 1] == 'i')
+		else
 		{
-			strcount = _recusive(va_arg(listarg, int), counter);
-			j++;
+			_myputchar(format[i]);
+			counter++;
 		}
-		j++;
-		counter++;
 	}
-	va_end(listarg);
+	va_end(args);
 	return (counter);
 }
