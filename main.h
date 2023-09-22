@@ -22,6 +22,9 @@ typedef struct printer
 int print_c(va_list);
 int print_s(va_list);
 int print_percent(va_list);
+int print_int(va_list args);
+int print_plus_int(va_list args);
+int print_space_int(va_list args);
 int _printf(const char *format, ...);
 
 /* gets the function and flag number for format specifiers */
