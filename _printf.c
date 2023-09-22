@@ -1,30 +1,50 @@
 #include "main.h"
+#include <stdio.h>
 /**
- * _printf - a custom defined function that is smiliar to C printf
- * @format : chracter string that is passed as arg
- *
- * Return: Numbers of char printed excluding null
+ * _printf - function to print to std out
+ * @format: variable for format specifier
+ * Return: number of byte printed
  */
-
 int _printf(const char *format, ...)
 {
-	va_list args;
-	int counter = 0;
+	unsigned int j = 0, counter = 0, strcount;
+	char *str;
 
-	va_start(args, *format);
-	while (*format != '\0')
+	va_list listarg;
+
+	va_start(listarg, format);
+
+	while (format[j] != '\0')
 	{
-		if (*format == '%')
+		if (format[j] != '%')
 		{
-			iformat(args, *(++format));
-			counter++;
+			_myputchar(format[j]);
 		}
-		else
+		else if (format[j + 1] == 'c')
 		{
-			ichar(*format);
+			_myputchar(va_arg(listarg, int));
+			j++;
 		}
-	format++;
+		else if (format[j + 1] == 's')
+		{	str = va_arg(listarg, char*);
+			if (str == NULL)
+				return (-1);
+			strcount = putstr(str);
+			j++;
+			counter = counter + (strcount - 1);
+		}
+		else if (format[j + 1] == '%')
+		{	_myputchar('%');
+			j++;
+		}
+		else if (format[j + 1] == 'd' || format[j + 1] == 'i')
+		{
+			strcount = _recusive(va_arg(listarg, int), counter);
+			j++;
+		}
+		j++;
+		counter++;
 	}
-	va_end(args);
+	va_end(listarg);
 	return (counter);
 }
