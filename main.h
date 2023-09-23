@@ -25,6 +25,8 @@ int print_percent(va_list);
 int print_int(va_list args);
 int print_plus_int(va_list args);
 int print_space_int(va_list args);
+int print_binary(va_list args);
+int recursive_print_binary(unsigned int num);
 int _printf(const char *format, ...);
 
 /* gets the function and flag number for format specifiers */
