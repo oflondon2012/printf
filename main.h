@@ -27,6 +27,14 @@ int print_plus_int(va_list args);
 int print_space_int(va_list args);
 int print_binary(va_list args);
 int recursive_print_binary(unsigned int num);
+int print_unsign_int(va_list args);
+int unsign_int(unsigned int num);
+int print_hexa(va_list args);
+int hexa(unsigned int num);
+int HEXA(unsigned int num);
+int print_octal(va_list args);
+int octal(unsigned int num);
+int print_HEXA(va_list args);
 int _printf(const char *format, ...);
 
 /* gets the function and flag number for format specifiers */

@@ -14,10 +14,14 @@
 int (*getfuncs(const char *s, int id))(va_list)
 {
 	printer_t funcs[] = {
-		{"c", print_c}, {"d", print_int}, {"+d", print_plus_int}, {" d", print_space_int},
-		{"s", print_s}, {" +d", print_plus_int}, {"+ d", print_plus_int}, {"i", print_int},
-		{"%", print_percent}, {"+i", print_plus_int}, {" i", print_space_int}, {" +i", print_plus_int},
-		{"+ i", print_plus_int},{"b", print_binary},
+		{"c", print_c}, {"d", print_int}, {"+d", print_plus_int},
+		{" d", print_space_int}, {"s", print_s}, {" +d", print_plus_int},
+		{"+ d", print_plus_int}, {"i", print_int},
+		{"%", print_percent}, {"+i", print_plus_int},
+		{" i", print_space_int}, {" +i", print_plus_int},
+		{"+ i", print_plus_int}, {"b", print_binary},
+		{"u", print_unsign_int}, {"x", print_hexa},
+		{"X", print_HEXA}, {"o", print_octal},
 		{NULL, NULL}
 	};
 
